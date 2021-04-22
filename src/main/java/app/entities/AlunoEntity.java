@@ -5,27 +5,27 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "professor")
-public class ProfessorEntity implements Serializable {
+@Table(name = "aluno")
+public class AlunoEntity implements Serializable {
 
     @Id
     @Column(length = 5)
     private String id;
     @Column(length = 20, nullable = false)
     private String nome;
-    @Column(precision = 8, scale = 2)
-    private float salario;
+    @Column(name = "tot_cred", precision = 3, scale = 0)
+    private float creditos;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    public ProfessorEntity() {
+    public AlunoEntity() {
     }
 
-    public ProfessorEntity(String id, String nome, float salario, DepartamentoEntity departamento) {
+    public AlunoEntity(String id, String nome, float creditos, DepartamentoEntity departamento) {
         this.id = id;
         this.nome = nome;
-        this.salario = salario;
+        this.creditos = creditos;
         this.departamento = departamento;
     }
 
@@ -45,12 +45,12 @@ public class ProfessorEntity implements Serializable {
         this.nome = nome;
     }
 
-    public float getSalario() {
-        return salario;
+    public float getCreditos() {
+        return creditos;
     }
 
-    public void setSalario(float salario) {
-        this.salario = salario;
+    public void setCreditos(float creditos) {
+        this.creditos = creditos;
     }
 
     public DepartamentoEntity getDepartamento() {
@@ -65,7 +65,7 @@ public class ProfessorEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProfessorEntity that = (ProfessorEntity) o;
+        AlunoEntity that = (AlunoEntity) o;
         return id.equals(that.id);
     }
 

@@ -1,14 +1,12 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "sala")
-public class SalaEntity {
+public class SalaEntity implements Serializable {
 
     @EmbeddedId
     private SalaEntityId salaId;
@@ -51,4 +49,5 @@ public class SalaEntity {
     public int hashCode() {
         return Objects.hash(salaId);
     }
+
 }

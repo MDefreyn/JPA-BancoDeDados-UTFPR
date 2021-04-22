@@ -11,8 +11,8 @@ public class Main {
         EntityManager manager = factory.createEntityManager();
         EntityTransaction transaction = manager.getTransaction();
 
-//        transaction.begin();
-//
+       transaction.begin();
+
 //        System.out.println("Buscando outra entidade");
 //        Entidade q = manager.find(Entidade.class, "String querry");
 //
@@ -24,10 +24,10 @@ public class Main {
 //
 //        System.out.println("Persistindo objeto");
 //        manager.persist(o);
-//
-//        System.out.println("Commit");
-//        transaction.commit();
-//
+
+        System.out.println("Commit");
+        transaction.commit();
+
         System.out.println("Encerrando Manager e Factory");
         manager.close();
         factory.close();

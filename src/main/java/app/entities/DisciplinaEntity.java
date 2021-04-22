@@ -5,27 +5,27 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "professor")
-public class ProfessorEntity implements Serializable {
+@Table(name = "disciplina")
+public class DisciplinaEntity implements Serializable {
 
     @Id
-    @Column(length = 5)
+    @Column(name = "disciplina_id", length = 8)
     private String id;
-    @Column(length = 20, nullable = false)
-    private String nome;
-    @Column(precision = 8, scale = 2)
-    private float salario;
+    @Column(length = 50)
+    private String titulo;
+    @Column(precision = 2, scale = 0)
+    private float creditos;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    public ProfessorEntity() {
+    public DisciplinaEntity() {
     }
 
-    public ProfessorEntity(String id, String nome, float salario, DepartamentoEntity departamento) {
+    public DisciplinaEntity(String id, String titulo, float creditos, DepartamentoEntity departamento) {
         this.id = id;
-        this.nome = nome;
-        this.salario = salario;
+        this.titulo = titulo;
+        this.creditos = creditos;
         this.departamento = departamento;
     }
 
@@ -37,20 +37,20 @@ public class ProfessorEntity implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public float getSalario() {
-        return salario;
+    public float getCreditos() {
+        return creditos;
     }
 
-    public void setSalario(float salario) {
-        this.salario = salario;
+    public void setCreditos(float creditos) {
+        this.creditos = creditos;
     }
 
     public DepartamentoEntity getDepartamento() {
@@ -65,7 +65,7 @@ public class ProfessorEntity implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProfessorEntity that = (ProfessorEntity) o;
+        DisciplinaEntity that = (DisciplinaEntity) o;
         return id.equals(that.id);
     }
 

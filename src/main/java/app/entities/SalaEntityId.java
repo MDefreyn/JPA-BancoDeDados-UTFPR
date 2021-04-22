@@ -1,12 +1,12 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class SalaEntityId implements Serializable {
+
     @Column(length = 15)
     private String predio;
     @Column(name = "numero_sala", length = 7)
@@ -48,4 +48,5 @@ public class SalaEntityId implements Serializable {
     public int hashCode() {
         return Objects.hash(predio, salaNum);
     }
+
 }

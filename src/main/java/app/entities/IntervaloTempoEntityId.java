@@ -1,12 +1,12 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
 public class IntervaloTempoEntityId implements Serializable {
+
     @Column(name = "intervalo_tempo_id", length = 4)
     private String intervaloTempo;
     @Column(length = 1)
@@ -70,4 +70,5 @@ public class IntervaloTempoEntityId implements Serializable {
     public int hashCode() {
         return Objects.hash(intervaloTempo, day, horaInicio, minInicio);
     }
+
 }

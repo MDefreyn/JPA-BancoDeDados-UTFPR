@@ -1,14 +1,13 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "intervalo_tempo")
-public class IntervaloTempoEntity {
+public class IntervaloTempoEntity implements Serializable {
+
     @EmbeddedId
     private IntervaloTempoEntityId intervaloID;
     @Column(name = "fim_hr")
@@ -61,4 +60,5 @@ public class IntervaloTempoEntity {
     public int hashCode() {
         return Objects.hash(intervaloID);
     }
+
 }
