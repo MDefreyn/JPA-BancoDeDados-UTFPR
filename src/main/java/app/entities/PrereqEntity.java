@@ -4,30 +4,26 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "prereq")
 public class PrereqEntity implements Serializable {
 
     @EmbeddedId
     private PrereqEntityId id;
-    @Column(length = 8)
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id")
+    @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false)
     private DisciplinaEntity disciplina;
-    @Column(length = 8)
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "prereq_id", referencedColumnName = "disciplina_id")
+    @JoinColumn(name = "prereq_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false)
     private DisciplinaEntity preRequisito;
 
     public PrereqEntity() {
     }
 
-    public PrereqEntity(DisciplinaEntity disciplina, DisciplinaEntity preRequisito) {
-        this.disciplina = disciplina;
-        this.preRequisito = preRequisito;
-        setNewID();
-    }
-
-    private void setNewID() {
-        this.id = new PrereqEntityId(disciplina.getId(), preRequisito.getId());
+    public PrereqEntity(PrereqEntityId id) {
+        this.id = id;
     }
 
     public PrereqEntityId getId() {
@@ -36,22 +32,6 @@ public class PrereqEntity implements Serializable {
 
     public void setId(PrereqEntityId id) {
         this.id = id;
-    }
-
-    public DisciplinaEntity getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(DisciplinaEntity disciplina) {
-        this.disciplina = disciplina;
-    }
-
-    public DisciplinaEntity getPreRequisito() {
-        return preRequisito;
-    }
-
-    public void setPreRequisito(DisciplinaEntity preRequisito) {
-        this.preRequisito = preRequisito;
     }
 
     @Override

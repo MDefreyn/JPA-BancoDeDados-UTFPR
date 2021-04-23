@@ -9,10 +9,13 @@ public class IntervaloTempoEntityId implements Serializable {
 
     @Column(name = "intervalo_tempo_id", length = 4)
     private String intervaloTempo;
+
     @Column(length = 1)
     private String day;
+
     @Column(name = "inicio_hr")
     private int horaInicio;
+
     @Column(name = "inicio_min")
     private int minInicio;
 

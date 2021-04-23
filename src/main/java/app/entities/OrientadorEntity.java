@@ -9,11 +9,10 @@ import java.util.Objects;
 public class OrientadorEntity implements Serializable {
 
     @Id
-    @Column(length = 5)
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "s_id", referencedColumnName = "id")
     private AlunoEntity aluno;
-    @Column(length = 5)
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "i_id", referencedColumnName = "id")
     private ProfessorEntity professor;

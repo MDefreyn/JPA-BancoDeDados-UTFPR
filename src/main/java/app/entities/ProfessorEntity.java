@@ -11,10 +11,13 @@ public class ProfessorEntity implements Serializable {
     @Id
     @Column(length = 5)
     private String id;
+
     @Column(length = 20, nullable = false)
     private String nome;
+
     @Column(precision = 8, scale = 2)
     private float salario;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;

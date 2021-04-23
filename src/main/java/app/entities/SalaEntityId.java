@@ -9,6 +9,7 @@ public class SalaEntityId implements Serializable {
 
     @Column(length = 15)
     private String predio;
+
     @Column(name = "numero_sala", length = 7)
     private String salaNum;
 

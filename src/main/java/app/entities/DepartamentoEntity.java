@@ -11,8 +11,10 @@ public class DepartamentoEntity implements Serializable {
     @Id
     @Column(name = "nome_dept", length = 20)
     private String depNome;
+
     @Column(length = 15)
     private String predio;
+
     @Column(precision = 12, scale = 2)
     private float orcamento;
 

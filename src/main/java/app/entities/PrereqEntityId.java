@@ -9,6 +9,7 @@ public class PrereqEntityId implements Serializable {
 
     @Column(name = "disciplina_id", length = 8)
     private String disciplina;
+
     @Column(name = "prereq_id", length = 8)
     private String prerequesito;
 

@@ -10,8 +10,10 @@ public class IntervaloTempoEntity implements Serializable {
 
     @EmbeddedId
     private IntervaloTempoEntityId intervaloID;
+
     @Column(name = "fim_hr")
     private int horaFim;
+
     @Column(name = "fim_min")
     private int minFim;
 

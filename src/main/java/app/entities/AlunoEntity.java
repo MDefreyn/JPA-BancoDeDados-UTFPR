@@ -11,10 +11,13 @@ public class AlunoEntity implements Serializable {
     @Id
     @Column(length = 5)
     private String id;
+
     @Column(length = 20, nullable = false)
     private String nome;
+
     @Column(name = "tot_cred", precision = 3, scale = 0)
     private float creditos;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;

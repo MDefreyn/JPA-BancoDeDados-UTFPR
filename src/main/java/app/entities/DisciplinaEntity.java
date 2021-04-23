@@ -11,10 +11,13 @@ public class DisciplinaEntity implements Serializable {
     @Id
     @Column(name = "disciplina_id", length = 8)
     private String id;
+
     @Column(length = 50)
     private String titulo;
+
     @Column(precision = 2, scale = 0)
     private float creditos;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;

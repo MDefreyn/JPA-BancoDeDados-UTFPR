@@ -10,6 +10,7 @@ public class SalaEntity implements Serializable {
 
     @EmbeddedId
     private SalaEntityId salaId;
+
     @Column(precision = 4, scale = 0)
     private int capacidade;
 
