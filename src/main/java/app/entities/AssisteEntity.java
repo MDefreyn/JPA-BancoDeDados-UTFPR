@@ -9,18 +9,18 @@ import java.util.Objects;
 public class AssisteEntity implements Serializable {
 
     @EmbeddedId
-    private AssisteEntityID id;
+    private AssisteEntityID pkId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private AlunoEntity aluno;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id"),
-            @JoinColumn(name = "sec_id", referencedColumnName = "sec_id"),
-            @JoinColumn(name = "semestre", referencedColumnName = "semestre"),
-            @JoinColumn(name = "ano", referencedColumnName = "ano")
+            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false),
+            @JoinColumn(name = "sec_id", referencedColumnName = "sec_id", insertable = false, updatable = false),
+            @JoinColumn(name = "semestre", referencedColumnName = "semestre", insertable = false, updatable = false),
+            @JoinColumn(name = "ano", referencedColumnName = "ano", insertable = false, updatable = false)
     })
     private SessaoEntity sessao;
 
@@ -31,18 +31,18 @@ public class AssisteEntity implements Serializable {
     }
 
     public AssisteEntity(AssisteEntityID id, AlunoEntity aluno, SessaoEntity sessao, String nota) {
-        this.id = id;
+        this.pkId = pkId;
         this.aluno = aluno;
         this.sessao = sessao;
         this.nota = nota;
     }
 
     public AssisteEntityID getId() {
-        return id;
+        return pkId;
     }
 
-    public void setId(AssisteEntityID id) {
-        this.id = id;
+    public void setId(AssisteEntityID pkId) {
+        this.pkId = pkId;
     }
 
     public AlunoEntity getAluno() {
@@ -74,12 +74,12 @@ public class AssisteEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AssisteEntity that = (AssisteEntity) o;
-        return id.equals(that.id);
+        return pkId.equals(that.pkId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(pkId);
     }
 
 }

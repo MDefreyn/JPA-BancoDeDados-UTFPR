@@ -9,36 +9,36 @@ import java.util.Objects;
 public class MinistraEntity implements Serializable {
 
     @EmbeddedId
-    private MinistraEntityId id;
+    private MinistraEntityId pkId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private ProfessorEntity professor;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id"),
-            @JoinColumn(name = "sec_id", referencedColumnName = "sec_id"),
-            @JoinColumn(name = "semestre", referencedColumnName = "semestre"),
-            @JoinColumn(name = "ano", referencedColumnName = "ano")
+            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false),
+            @JoinColumn(name = "sec_id", referencedColumnName = "sec_id", insertable = false, updatable = false),
+            @JoinColumn(name = "semestre", referencedColumnName = "semestre", insertable = false, updatable = false),
+            @JoinColumn(name = "ano", referencedColumnName = "ano", insertable = false, updatable = false)
     })
     private SessaoEntity sessao;
 
     public MinistraEntity() {
     }
 
-    public MinistraEntity(MinistraEntityId id, ProfessorEntity professor, SessaoEntity sessao) {
-        this.id = id;
+    public MinistraEntity(MinistraEntityId pkId, ProfessorEntity professor, SessaoEntity sessao) {
+        this.pkId = pkId;
         this.professor = professor;
         this.sessao = sessao;
     }
 
     public MinistraEntityId getId() {
-        return id;
+        return pkId;
     }
 
     public void setId(MinistraEntityId id) {
-        this.id = id;
+        this.pkId = pkId;
     }
 
     public ProfessorEntity getProfessor() {
@@ -62,12 +62,12 @@ public class MinistraEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MinistraEntity that = (MinistraEntity) o;
-        return id.equals(that.id);
+        return pkId.equals(that.pkId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(pkId);
     }
 
 }

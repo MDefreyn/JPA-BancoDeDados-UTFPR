@@ -7,16 +7,14 @@ import java.util.Objects;
 @Embeddable
 public class MinistraEntityId implements Serializable {
 
-    @Column(length = 5)
     private String id;
 
     @Column(name = "disciplina_id")
     private String disciplina;
 
-    @Column(name = "sec_id", length = 8)
+    @Column(name = "sec_id")
     private String sessao;
 
-    @Column(length = 6)
     private String semestre;
 
     private int ano;
