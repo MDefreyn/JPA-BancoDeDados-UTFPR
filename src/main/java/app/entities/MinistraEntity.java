@@ -11,7 +11,7 @@ public class MinistraEntity implements Serializable {
     @EmbeddedId
     private MinistraEntityId pkId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private ProfessorEntity professor;
 

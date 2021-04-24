@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,18 @@ public class DisciplinaEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
+
+    @OneToMany(mappedBy = "disciplina")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<SessaoEntity> sessoes;
+
+    @OneToOne(mappedBy = "disciplina")
+    @JoinColumn(insertable = false, updatable = false)
+    private PrereqEntity temRequisito;
+
+    @OneToOne(mappedBy = "preRequisito")
+    @JoinColumn(insertable = false, updatable = false)
+    private PrereqEntity eRequisito;
 
     public DisciplinaEntity() {
     }

@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +18,18 @@ public class DepartamentoEntity implements Serializable {
 
     @Column(precision = 12, scale = 2)
     private float orcamento;
+
+    @OneToMany(mappedBy = "departamento")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<AlunoEntity> alunos;
+
+    @OneToMany(mappedBy = "departamento")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<DisciplinaEntity> disciplinas;
+
+    @OneToMany(mappedBy = "departamento")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<ProfessorEntity> professores;
 
     public DepartamentoEntity() {
     }

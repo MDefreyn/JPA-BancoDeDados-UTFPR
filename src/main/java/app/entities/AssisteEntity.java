@@ -11,11 +11,11 @@ public class AssisteEntity implements Serializable {
     @EmbeddedId
     private AssisteEntityID pkId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
     private AlunoEntity aluno;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({
             @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false),
             @JoinColumn(name = "sec_id", referencedColumnName = "sec_id", insertable = false, updatable = false),

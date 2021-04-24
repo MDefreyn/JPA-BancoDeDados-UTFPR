@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -11,7 +12,7 @@ public class SessaoEntity implements Serializable {
     @EmbeddedId
     private SessaoEntityID id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false)
     private DisciplinaEntity disciplina;
 
@@ -24,6 +25,14 @@ public class SessaoEntity implements Serializable {
 
     @Column(name = "intervalo_tempo_id", length = 4)
     private String tempo;
+
+    @OneToMany(mappedBy = "sessao")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<AssisteEntity> assiste;
+
+    @OneToOne(mappedBy = "sessao")
+    @JoinColumn(insertable = false, updatable = false)
+    private MinistraEntity ministra;
 
     public SessaoEntity() {
     }

@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,14 @@ public class ProfessorEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
+
+    @OneToMany(mappedBy = "professor")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<MinistraEntity> ministra;
+
+    @OneToMany(mappedBy = "professor")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<OrientadorEntity> orientados;
 
     public ProfessorEntity() {
     }

@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,10 @@ public class SalaEntity implements Serializable {
 
     @Column(precision = 4, scale = 0)
     private int capacidade;
+
+    @OneToMany(mappedBy = "sala")
+    @JoinColumn(insertable = false, updatable = false)
+    private Collection<SessaoEntity> sessoes;
 
     public SalaEntity() {
     }
