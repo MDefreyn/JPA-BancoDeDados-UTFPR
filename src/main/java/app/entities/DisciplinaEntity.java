@@ -23,11 +23,11 @@ public class DisciplinaEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "disciplina")
+    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<SessaoEntity> sessoes;
 
-    @OneToOne(mappedBy = "disciplina")
+    @OneToOne(mappedBy = "disciplina", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private PrereqEntity temRequisito;
 
@@ -77,6 +77,30 @@ public class DisciplinaEntity implements Serializable {
         this.departamento = departamento;
     }
 
+    public Collection<SessaoEntity> getSessoes() {
+        return sessoes;
+    }
+
+    public void setSessoes(Collection<SessaoEntity> sessoes) {
+        this.sessoes = sessoes;
+    }
+
+    public PrereqEntity getTemRequisito() {
+        return temRequisito;
+    }
+
+    public void setTemRequisito(PrereqEntity temRequisito) {
+        this.temRequisito = temRequisito;
+    }
+
+    public PrereqEntity geteRequisito() {
+        return eRequisito;
+    }
+
+    public void seteRequisito(PrereqEntity eRequisito) {
+        this.eRequisito = eRequisito;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,6 +112,13 @@ public class DisciplinaEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Disciplina: " + titulo +
+                "\n\tDepartamento: " + departamento.getDepNome() +
+                "\n";
     }
 
 }

@@ -26,11 +26,11 @@ public class SessaoEntity implements Serializable {
     @Column(name = "intervalo_tempo_id", length = 4)
     private String tempo;
 
-    @OneToMany(mappedBy = "sessao")
+    @OneToMany(mappedBy = "sessao", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<AssisteEntity> assiste;
 
-    @OneToOne(mappedBy = "sessao")
+    @OneToOne(mappedBy = "sessao", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private MinistraEntity ministra;
 
@@ -65,6 +65,30 @@ public class SessaoEntity implements Serializable {
 
     public void setTempo(String tempo) {
         this.tempo = tempo;
+    }
+
+    public DisciplinaEntity getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(DisciplinaEntity disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public Collection<AssisteEntity> getAssiste() {
+        return assiste;
+    }
+
+    public void setAssiste(Collection<AssisteEntity> assiste) {
+        this.assiste = assiste;
+    }
+
+    public MinistraEntity getMinistra() {
+        return ministra;
+    }
+
+    public void setMinistra(MinistraEntity ministra) {
+        this.ministra = ministra;
     }
 
     @Override

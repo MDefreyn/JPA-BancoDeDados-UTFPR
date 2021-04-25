@@ -23,11 +23,11 @@ public class AlunoEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "aluno")
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<AssisteEntity> assiste;
 
-    @OneToOne(mappedBy = "aluno")
+    @OneToOne(mappedBy = "aluno", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private OrientadorEntity orientador;
 
@@ -71,6 +71,22 @@ public class AlunoEntity implements Serializable {
 
     public void setDepartamento(DepartamentoEntity departamento) {
         this.departamento = departamento;
+    }
+
+    public Collection<AssisteEntity> getAssiste() {
+        return assiste;
+    }
+
+    public void setAssiste(Collection<AssisteEntity> assiste) {
+        this.assiste = assiste;
+    }
+
+    public OrientadorEntity getOrientador() {
+        return orientador;
+    }
+
+    public void setOrientador(OrientadorEntity orientador) {
+        this.orientador = orientador;
     }
 
     @Override

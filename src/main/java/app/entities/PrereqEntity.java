@@ -34,6 +34,22 @@ public class PrereqEntity implements Serializable {
         this.id = id;
     }
 
+    public DisciplinaEntity getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(DisciplinaEntity disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public DisciplinaEntity getPreRequisito() {
+        return preRequisito;
+    }
+
+    public void setPreRequisito(DisciplinaEntity preRequisito) {
+        this.preRequisito = preRequisito;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

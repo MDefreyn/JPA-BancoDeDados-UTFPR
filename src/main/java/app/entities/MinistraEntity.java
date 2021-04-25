@@ -33,11 +33,11 @@ public class MinistraEntity implements Serializable {
         this.sessao = sessao;
     }
 
-    public MinistraEntityId getId() {
+    public MinistraEntityId getPkId() {
         return pkId;
     }
 
-    public void setId(MinistraEntityId id) {
+    public void setPkId(MinistraEntityId id) {
         this.pkId = pkId;
     }
 

@@ -16,7 +16,7 @@ public class InitialMenu {
         System.out.print("\n\t[3]\t[E]xpressão Select New");
         System.out.print("\n\t[4]\t[N]amed query");
         System.out.print("\n\t[5]\t[O]utras");
-        System.out.print("\n\t[ ]\t[S]air\n");
+        System.out.print("\n\t[ ]\t[S]air\n\n");
         char str = getOpcao().toUpperCase().charAt(0);
         switch (str) {
             case '1':

@@ -64,6 +64,37 @@ public class DepartamentoEntity implements Serializable {
         this.orcamento = orcamento;
     }
 
+    public Collection<AlunoEntity> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Collection<AlunoEntity> alunos) {
+        this.alunos = alunos;
+    }
+
+    public Collection<DisciplinaEntity> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Collection<DisciplinaEntity> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public Collection<ProfessorEntity> getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(Collection<ProfessorEntity> professores) {
+        this.professores = professores;
+    }
+
+    @PreRemove
+    private void setNullOnDelete() {
+        disciplinas.forEach(dis -> dis.setDepartamento(null));
+        professores.forEach(prof -> prof.setDepartamento(null));
+        alunos.forEach(aluno -> aluno.setDepartamento(null));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

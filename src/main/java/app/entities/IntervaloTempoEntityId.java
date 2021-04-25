@@ -29,12 +29,12 @@ public class IntervaloTempoEntityId implements Serializable {
         this.minInicio = minInicio;
     }
 
-    public String getInterTempo() {
+    public String getIntervaloTempo() {
         return intervaloTempo;
     }
 
-    public void setInterTempo(String interTempo) {
-        this.intervaloTempo = interTempo;
+    public void setIntervaloTempo(String intervaloTempo) {
+        this.intervaloTempo = intervaloTempo;
     }
 
     public String getDay() {

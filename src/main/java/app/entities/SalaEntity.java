@@ -43,6 +43,19 @@ public class SalaEntity implements Serializable {
         this.capacidade = capacidade;
     }
 
+    public Collection<SessaoEntity> getSessoes() {
+        return sessoes;
+    }
+
+    public void setSessoes(Collection<SessaoEntity> sessoes) {
+        this.sessoes = sessoes;
+    }
+
+    @PreRemove
+    private void setNullOnDelete() {
+        sessoes.forEach(sessao -> sessao.setSala(null));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

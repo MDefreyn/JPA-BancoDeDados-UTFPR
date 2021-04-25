@@ -23,7 +23,7 @@ public class ProfessorEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<MinistraEntity> ministra;
 
@@ -73,6 +73,27 @@ public class ProfessorEntity implements Serializable {
         this.departamento = departamento;
     }
 
+    public Collection<MinistraEntity> getMinistra() {
+        return ministra;
+    }
+
+    public void setMinistra(Collection<MinistraEntity> ministra) {
+        this.ministra = ministra;
+    }
+
+    public Collection<OrientadorEntity> getOrientados() {
+        return orientados;
+    }
+
+    public void setOrientados(Collection<OrientadorEntity> orientados) {
+        this.orientados = orientados;
+    }
+
+    @PreRemove
+    private void setNullonDelete() {
+        orientados.forEach(aluno -> aluno.setProfessor(null));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +105,14 @@ public class ProfessorEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Disciplina: " + nome +
+                "\n\tDepartamento: " + departamento.getDepNome() +
+                "\n\tSalario: " + salario +
+                "\n";
     }
 
 }

@@ -37,11 +37,11 @@ public class AssisteEntity implements Serializable {
         this.nota = nota;
     }
 
-    public AssisteEntityID getId() {
+    public AssisteEntityID getPkId() {
         return pkId;
     }
 
-    public void setId(AssisteEntityID pkId) {
+    public void setPkId(AssisteEntityID pkId) {
         this.pkId = pkId;
     }
 

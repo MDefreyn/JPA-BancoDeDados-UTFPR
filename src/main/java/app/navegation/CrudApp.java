@@ -2,7 +2,7 @@ package app.navegation;
 
 public class CrudApp {
     public boolean menu() {
-        System.out.print("Crud App");
+        System.out.print("Iniciando CRUD da aplicação");
         return true;
     }
 }
