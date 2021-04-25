@@ -17,7 +17,8 @@ public class MinistraEntity implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumns({
-            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id", insertable = false, updatable = false),
+            @JoinColumn(name = "disciplina_id", referencedColumnName = "disciplina_id",
+                    insertable = false, updatable = false),
             @JoinColumn(name = "sec_id", referencedColumnName = "sec_id", insertable = false, updatable = false),
             @JoinColumn(name = "semestre", referencedColumnName = "semestre", insertable = false, updatable = false),
             @JoinColumn(name = "ano", referencedColumnName = "ano", insertable = false, updatable = false)

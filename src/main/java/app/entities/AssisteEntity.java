@@ -5,6 +5,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Cursos em 2009", query = "SELECT NEW app.newQueries.CursosMinistrados (AVG(a.creditos), at.pkId.disciplina) FROM AssisteEntity at " +
+                "JOIN AlunoEntity a ON a.id = at.aluno.id WHERE at.pkId.ano = 2009 GROUP BY  at.pkId.disciplina " +
+                "HAVING COUNT(a) >= 2"),
+})
 @Table(name = "assiste")
 public class AssisteEntity implements Serializable {
 

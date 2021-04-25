@@ -17,4 +17,5 @@ public class ConnectManager {
     public static EntityManager getManager() {
         return factory.createEntityManager();
     }
+
 }

@@ -6,6 +6,11 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Professores por Departamente", query = "SELECT NEW app.newQueries.CountProfDepartamento " +
+                "(d.depNome, COUNT(DISTINCT p.id)) FROM DepartamentoEntity d JOIN ProfessorEntity p " +
+                "ON d.depNome = p.departamento.depNome GROUP BY d.depNome"),
+})
 @Table(name = "departamento")
 public class DepartamentoEntity implements Serializable {
 

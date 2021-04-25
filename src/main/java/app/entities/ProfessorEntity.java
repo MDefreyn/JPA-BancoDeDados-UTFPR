@@ -7,10 +7,26 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Profesores de Deps", query = "SELECT p FROM ProfessorEntity p JOIN DepartamentoEntity d ON p.departamento.depNome = d.depNome"),
-        @NamedQuery(name = "Professores e Cursos", query = "SELECT DISTINCT p FROM ProfessorEntity p INNER JOIN MinistraEntity m ON p.id = m.professor.id"),
-        @NamedQuery(name = "Salario > Biology", query = "SELECT p FROM ProfessorEntity p WHERE p.salario > (SELECT  p.salario FROM ProfessorEntity p WHERE p.departamento.depNome = 'Biology')"),
-        @NamedQuery(name = "Salario NULL", query = "SELECT p FROM ProfessorEntity p WHERE p.salario IS NULL"),
+        @NamedQuery(name = "Profesores de Deps", query = "SELECT p FROM ProfessorEntity p JOIN DepartamentoEntity d " +
+                "ON p.departamento.depNome = d.depNome"),
+        @NamedQuery(name = "Professores e Cursos", query = "SELECT DISTINCT p FROM ProfessorEntity p " +
+                "JOIN MinistraEntity m ON p.id = m.professor.id"),
+        @NamedQuery(name = "Professores de Physics", query = "SELECT p FROM ProfessorEntity p " +
+                "WHERE p.departamento.depNome = :valor ORDER BY p.nome ASC"),
+        @NamedQuery(name = "Salario NULL", query = "SELECT p FROM ProfessorEntity p WHERE p.salario = :salario"),
+        @NamedQuery(name = "Professores de Bio", query = "SELECT NEW app.newQueries.ProfessoresBiologia " +
+                "(p.nome, m.pkId.disciplina, d.titulo) FROM ProfessorEntity p JOIN MinistraEntity m " +
+                "ON p.id = m.professor.id JOIN DisciplinaEntity d ON m.pkId.disciplina = d.id " +
+                "WHERE p.departamento.depNome = 'Biology'"),
+        @NamedQuery(name = "Professores ministram aulas", query = "SELECT NEW app.newQueries.ProfessoresMinistramAulas " +
+                "(p.departamento.depNome, COUNT(DISTINCT p.id)) FROM ProfessorEntity p JOIN MinistraEntity m " +
+                "ON p.id = m.professor.id WHERE m.pkId.semestre = 'Spring' AND m.pkId.ano = 2010 " +
+                "GROUP BY p.departamento.depNome"),
+        @NamedQuery(name = "Salario medio", query = "SELECT NEW app.newQueries.MediaSalario " +
+                "(AVG(p.salario), p.departamento.depNome) FROM ProfessorEntity p GROUP BY p.departamento.depNome " +
+                "HAVING AVG(p.salario) > 42000"),
+        @NamedQuery(name = "Maximo salario", query = "SELECT NEW app.newQueries.MaximoSalario " +
+                "(MAX(p.salario), p.departamento.depNome) FROM ProfessorEntity p GROUP BY p.departamento.depNome"),
 })
 @Table(name = "professor")
 public class ProfessorEntity implements Serializable {

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InitialMenu {
+
     static String head = "\nInforme uma opção entre os símbolos [ ]";
     static String erro = "\nOpção inválida. Selecione o número ou letra que esta entre os símbolos [ ]!\n";
     static boolean sair;
@@ -56,4 +57,5 @@ public class InitialMenu {
         }
         return str;
     }
+
 }

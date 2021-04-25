@@ -6,6 +6,16 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Alunos Não Matriculados", query = "SELECT a FROM AlunoEntity a WHERE a.assiste IS EMPTY"),
+        @NamedQuery(name = "Alunos e Cursos", query = "SELECT NEW app.newQueries.DisciplinaAluno " +
+                "(a.nome, d.titulo, d.creditos) FROM AssisteEntity at JOIN DisciplinaEntity d ON d.id = at.pkId.disciplina " +
+                "JOIN AlunoEntity a ON a.id = at.aluno.id"),
+        @NamedQuery(name = "Alunos CompSci", query = "SELECT NEW app.newQueries.AlunosCompSci " +
+                "(a.nome, a.departamento.depNome, a.creditos, s.disciplina.id, s.id.semestre, s.id.ano, s.sala.salaId.predio) " +
+                "FROM AssisteEntity at JOIN SessaoEntity s ON s.id = at.sessao.id JOIN AlunoEntity a " +
+                "WHERE s.id.semestre = 'Spring' AND s.id.ano = 2009 AND s.disciplina.id LIKE '%CS%' AND at.aluno.id = a.id"),
+})
 @Table(name = "aluno")
 public class AlunoEntity implements Serializable {
 
@@ -23,7 +33,7 @@ public class AlunoEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<AssisteEntity> assiste;
 
