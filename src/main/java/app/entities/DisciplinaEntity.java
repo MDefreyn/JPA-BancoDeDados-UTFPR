@@ -117,8 +117,7 @@ public class DisciplinaEntity implements Serializable {
     @Override
     public String toString() {
         return "Disciplina: " + titulo +
-                "\n\tDepartamento: " + departamento.getDepNome() +
-                "\n";
+                "\n\tDepartamento: " + departamento.getDepNome();
     }
 
 }

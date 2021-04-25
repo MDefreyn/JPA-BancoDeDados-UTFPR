@@ -6,6 +6,12 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Profesores de Deps", query = "SELECT p FROM ProfessorEntity p JOIN DepartamentoEntity d ON p.departamento.depNome = d.depNome"),
+        @NamedQuery(name = "Professores e Cursos", query = "SELECT DISTINCT p FROM ProfessorEntity p INNER JOIN MinistraEntity m ON p.id = m.professor.id"),
+        @NamedQuery(name = "Salario > Biology", query = "SELECT p FROM ProfessorEntity p WHERE p.salario > (SELECT  p.salario FROM ProfessorEntity p WHERE p.departamento.depNome = 'Biology')"),
+        @NamedQuery(name = "Salario NULL", query = "SELECT p FROM ProfessorEntity p WHERE p.salario IS NULL"),
+})
 @Table(name = "professor")
 public class ProfessorEntity implements Serializable {
 
@@ -23,7 +29,7 @@ public class ProfessorEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<MinistraEntity> ministra;
 
@@ -109,10 +115,9 @@ public class ProfessorEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Disciplina: " + nome +
+        return "Nome: " + nome +
                 "\n\tDepartamento: " + departamento.getDepNome() +
-                "\n\tSalario: " + salario +
-                "\n";
+                "\n\tSalario: " + salario;
     }
 
 }

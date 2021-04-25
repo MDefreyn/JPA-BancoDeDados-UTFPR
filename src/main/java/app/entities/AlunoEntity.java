@@ -23,7 +23,7 @@ public class AlunoEntity implements Serializable {
     @JoinColumn(name = "nome_dept", referencedColumnName = "nome_dept")
     private DepartamentoEntity departamento;
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(insertable = false, updatable = false)
     private Collection<AssisteEntity> assiste;
 
@@ -100,6 +100,13 @@ public class AlunoEntity implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome +
+                "\n\tDepartamento: " + departamento.getDepNome() +
+                "\n\tCréditos: " + creditos;
     }
 
 }
